@@ -51,6 +51,11 @@ class SQLConnect {
         return cnn.prepareStatement(sql);
     }
 
+    boolean sqlExecute(String name, PreparedStatement pst) throws SQLException {
+        pst.setString(1, name);
+        return pst.execute();
+    }
+
     void sqlExecute(Phone phone, PreparedStatement pst) {
         try {
             pst.setString(1, phone.getName());
@@ -79,12 +84,6 @@ class SQLConnect {
         pst.setString(1, name);
         return pst.executeQuery();
     }
-
-    boolean sqlExecute(String name, PreparedStatement pst) throws SQLException {
-        pst.setString(1, name);
-        return pst.execute();
-    }
-
 
     void print(int a) {
         System.out.println(a + "개 항목 작업 완료했습니다.");
