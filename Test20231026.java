@@ -71,7 +71,6 @@ class SQLConnect {
         return pst.executeUpdate();
     }
 
-
     ResultSet sqlQuery(PreparedStatement pst) throws SQLException {
         return pst.executeQuery();
     }
@@ -154,14 +153,14 @@ public class Test20231026 {
                     break;
                 case 2:
                     System.out.print("이름 : ");
-                    scn.getTable(scn.sqlQuery(sc.next(), scn.preparedStatement("select * from phone where name = ?")));
+                    scn.getTable(scn.sqlQuery(sc.next(), scn.preparedStatement("select name, rpad(substr(phoneNumber,1,4),8,'*'), address from phone where name = ?")));
                     break;
                 case 3:
                     System.out.print("이름 : ");
                     scn.print(scn.sqlUpdate(sc.next(), scn.preparedStatement("delete from phone where name = ?")));
                     break;
                 case 4:
-                    scn.getTable(scn.sqlQuery(scn.preparedStatement("select * from phone")));
+                    scn.getTable(scn.sqlQuery(scn.preparedStatement("select name, rpad(substr(phoneNumber,1,4),8,'*'), address from phone")));
                     break;
                 case 5:
                     break;
