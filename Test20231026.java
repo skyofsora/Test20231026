@@ -81,6 +81,11 @@ class SQLConnect {
         return pst.executeQuery();
     }
 
+    boolean sqlExecute(String name, PreparedStatement pst) throws SQLException {
+        pst.setString(1, name);
+        return pst.execute();
+    }
+
 
     void print(int a) {
         System.out.println(a + "개 항목 작업 완료했습니다.");
@@ -135,6 +140,10 @@ public class Test20231026 {
                 case 1:
                     System.out.print("이름 : ");
                     String name = sc.next();
+                    if (scn.sqlExecute(name, scn.preparedStatement("select * from phone where name = ?"))) {
+                        System.out.println("이미 이름이 존재합니다. 다른 이름을 입력해주세요.");
+                        break;
+                    }
                     System.out.print("\n전화번호 : ");
                     String num = sc.next();
                     System.out.print("\n주소 : ");
